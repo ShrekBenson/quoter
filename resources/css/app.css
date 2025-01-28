@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .h-page-content {
+    height: calc(100dvh - 147px);
+  }
+}
