@@ -13,6 +13,11 @@ class Clients extends Component
         $this->clientes = Cliente::all();
     }
 
+    public function deleteClient(Cliente $cliente) {
+        $cliente->delete();
+        $this->redirectRoute('clients', navigate:true);
+    }
+
     public function render()
     {
         return view('livewire.clients.clients');

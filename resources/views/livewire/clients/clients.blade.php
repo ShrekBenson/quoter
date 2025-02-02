@@ -16,7 +16,7 @@
     <div class="max-w-7xl h-full mx-auto sm:px-6 lg:px-8">
         <div class="h-full bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="h-full p-6 text-gray-900 overflow-y-auto">
-                <table class="w-full h-auto text-left table-auto min-w-max text-slate-800">
+                <table class="w-full h-auto text-left table-fixed min-w-max text-slate-800">
                     <thead>
                         <tr class="text-slate-500 border-b border-slate-300 bg-slate-50">
                             <th class="p-4">
@@ -48,12 +48,12 @@
                         @foreach ($clientes as $cliente)
                             <tr wire:key="{{ $cliente->id }}" class="hover:bg-slate-50">
                                 <td class="p-4">
-                                    <p class="text-sm font-bold">
+                                    <p class="text-sm font-bold truncate">
                                         {{ $cliente->nombre }}
                                     </p>
                                 </td>
                                 <td class="p-4">
-                                    <p class="text-sm">
+                                    <p class="text-sm truncate">
                                         {{ $cliente->ubicacion }}
                                     </p>
                                 </td>
@@ -69,10 +69,15 @@
                                 </td>
                                 <td class="p-4">
                                     <a wire:navigate href="{{ route('clients.edit', $cliente->id) }}">
-                                        <x-secondary-button >
+                                        <x-primary-button >
                                             Editar
-                                        </x-secondary-button>
+                                        </x-primary-button>
                                     </a>
+                                    <x-secondary-button
+                                        title="Eliminar cliente"
+                                        wire:click="deleteClient({{ $cliente->id }})" >
+                                        X
+                                    </x-secondary-button>
                                 </td>
                             </tr>
                         @endforeach

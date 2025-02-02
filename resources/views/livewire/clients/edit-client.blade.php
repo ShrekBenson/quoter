@@ -1,7 +1,7 @@
 <x-slot:header>
     <div class="flex justify-between items-center">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Nuevo cliente') }}
+            {{ __('Actualizar cliente') }}
         </h2>
 
         <a wire:navigate href="{{ route('clients') }}">
