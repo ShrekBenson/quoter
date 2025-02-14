@@ -92,11 +92,59 @@
                                 </label>
                             </div>
                         </div>
+
+                        <div class="w-full min-w-[200px]">
+                            <div class="relative">
+                                <x-text-input type="file"
+                                    class="peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                                    placeholder="Miniatura de video" wire:model="miniatura" />
+                                <label
+                                    class="absolute cursor-text bg-white px-1 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2.5 text-slate-500 peer-placeholder-shown:text-sm transition-all transform origin-left -top-2 left-2.5 text-xs scale-90 peer-focus:-top-2 peer-focus:left-2.5 peer-focus:text-xs peer-focus:text-slate-500 peer-focus:scale-90">
+                                    Miniatura
+                                </label>
+                            </div>
+
+                            @error('miniatura')
+                                <x-input-error :messages="$errors->get('miniatura')" class="mt-2 pl-3" />
+                            @enderror
+                        </div>
+
+                        <div class="w-full min-w-[200px]">
+                            <div class="relative">
+                                <x-text-input type="file"
+                                    class="peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                                    placeholder="Archivo de video" wire:model="video" />
+                                <label
+                                    class="absolute cursor-text bg-white px-1 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2.5 text-slate-500 peer-placeholder-shown:text-sm transition-all transform origin-left -top-2 left-2.5 text-xs scale-90 peer-focus:-top-2 peer-focus:left-2.5 peer-focus:text-xs peer-focus:text-slate-500 peer-focus:scale-90">
+                                    Archivo de video
+                                </label>
+                            </div>
+
+                            @error('video')
+                                <x-input-error :messages="$errors->get('video')" class="mt-2 pl-3" />
+                            @enderror
+                        </div>
                     </fieldset>
-                    @error('form.title')
-                        <p class="pl-3 pt-2 text-sm text-red-600" x-data="{ show: $wire.entangle('errors') != null }" x-init="setTimeout(() => show = false, 5000)"
-                            x-show="show" x-transition:leave.duration.300ms>{{ $message }}</p>
-                    @enderror
+
+                    <div
+                        class="flex flex-col">
+                        <p>Foto - Video de presentación</p>
+                        <div class="flex gap-x-8 w-full h-auto mt-4 ml-3 overflow-y-hidden rounded-md relative">
+                            @if ($cliente->miniatura)
+                                <div class="h-[240px]">                                
+                                    <img src="{{ Storage::url($cliente->miniatura) }}" alt="Upload"
+                                        class="h-full object-cover object-center rounded-full">
+                                </div>
+                            @endif
+    
+                            @if ($cliente->video)
+                                <video width="320" height="240" controls>
+                                    <source src="{{ Storage::url($cliente->video) }}" type="video/mp4">
+                                    Tu navegador no soporta la reproducción de video.
+                                </video>
+                            @endif
+                        </div>
+                    </div>
 
                     <div class="w-full max-w-full min-w-[200px] mt-8">
                         <x-primary-button>

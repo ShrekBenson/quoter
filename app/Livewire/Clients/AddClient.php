@@ -4,9 +4,12 @@ namespace App\Livewire\Clients;
 
 use App\Livewire\Forms\ClienteForm;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddClient extends Component
 {
+    use WithFileUploads;
+
     public ClienteForm $clienteForm;
 
     public function saveClient() {        

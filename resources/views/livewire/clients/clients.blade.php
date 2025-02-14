@@ -21,6 +21,11 @@
                         <tr class="text-slate-500 border-b border-slate-300 bg-slate-50">
                             <th class="p-4">
                                 <p class="text-sm leading-none font-normal">
+                                    Miniatura
+                                </p>
+                            </th>
+                            <th class="p-4">
+                                <p class="text-sm leading-none font-normal">
                                     Nombre
                                 </p>
                             </th>
@@ -48,6 +53,17 @@
                         @foreach ($clientes as $cliente)
                             <tr wire:key="{{ $cliente->id }}" class="hover:bg-slate-50">
                                 <td class="p-4">
+                                    @if ($cliente->miniatura)
+                                        <img src="{{ Storage::url($cliente->miniatura) }}" alt="Miniatura"
+                                            title="{{ Storage::url($cliente->miniatura) }}"
+                                            class="w-full h-[75px] object-cover object-top rounded-md">
+                                    @else
+                                    <div class="w-full h-[75px] rounded-md">
+                                        <p>Sin foto</p>
+                                    </div>
+                                    @endif
+                                </td>
+                                <td class="p-4">
                                     <p class="text-sm font-bold truncate">
                                         {{ $cliente->nombre }}
                                     </p>
@@ -69,13 +85,12 @@
                                 </td>
                                 <td class="p-4">
                                     <a wire:navigate href="{{ route('clients.edit', $cliente->id) }}">
-                                        <x-primary-button >
+                                        <x-primary-button>
                                             Editar
                                         </x-primary-button>
                                     </a>
-                                    <x-secondary-button
-                                        title="Eliminar cliente"
-                                        wire:click="deleteClient({{ $cliente->id }})" >
+                                    <x-secondary-button title="Eliminar cliente"
+                                        wire:click="deleteClient({{ $cliente->id }})">
                                         X
                                     </x-secondary-button>
                                 </td>

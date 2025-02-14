@@ -23,11 +23,42 @@ class ClienteForm extends Form
 
     public $telefono;
 
-    public function save() {
-        $this->validate();        
+    #[Validate('nullable')]
+    #[Validate('image', message:'El archivo no es una imagen válida')]
+    #[Validate('mimes:jpg,jpeg,png,svg,bmp,webp,gif', message:'Solo se admiten los formatos: jpg,jpeg,png,svg,bmp,webp,gif')]
+    #[Validate('max:2048', message:'El archivo debe pesar menos de 2MB')]
+    public $miniatura;
 
-        Cliente::create(
-            $this->all()
-        );
+    #[Validate('nullable')]
+    #[Validate('mimes:mp4,mov,avi,wmv', message:'Solo se admiten los formatos: mp4,mov,avi,wmv')]
+    #[Validate('max:10240', message:'El archivo debe pesar menos de 10MB')]
+    public $video;
+
+    public function save() {
+        $this->validate();
+
+        $imagePath = null;
+        $videoPath = null;
+
+        if ($this->miniatura) {
+            $imageName = time().'.'.$this->miniatura->extension();
+            $imagePath = $this->miniatura->storeAs('/uploads/miniaturas', $imageName);
+        }
+
+        if ($this->video) {
+            $videoName = time().'.'.$this->video->extension();
+            $videoPath = $this->video->storeAs('/uploads/videos', $videoName);
+        }
+
+        Cliente::create([
+            'nombre'=>$this->nombre,
+            'ubicacion'=>$this->ubicacion,
+            'email'=>$this->email,
+            'telefono'=>$this->telefono,
+            'miniatura'=>$imagePath,
+            'video'=>$videoPath
+        ]);
+
+        $this->reset();
     }
 }

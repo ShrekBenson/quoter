@@ -6,6 +6,7 @@ use App\Livewire\Clients\EditClient;
 use App\Livewire\Purchases\CreatePurchase;
 use App\Livewire\Purchases\EditPurchase;
 use App\Livewire\Purchases\Purchases;
+use App\Models\Cliente;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome');
@@ -34,6 +35,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     Route::view('profile', 'profile')
         ->name('profile');
+
+    Route::get('videos', function() {
+        return view('video', [
+            'clientes'=>Cliente::all()
+        ]);
+    });
 });
 
 require __DIR__.'/auth.php';

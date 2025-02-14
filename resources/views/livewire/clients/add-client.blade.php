@@ -26,8 +26,7 @@
                             <div class="relative">
                                 <x-text-input
                                     class="peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                    placeholder="Nombre del cliente"
-                                    wire:model="clienteForm.nombre" />
+                                    placeholder="Nombre del cliente" wire:model="clienteForm.nombre" />
                                 <label
                                     class="absolute cursor-text bg-white px-1 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2.5 text-slate-500 peer-placeholder-shown:text-sm transition-all transform origin-left -top-2 left-2.5 text-xs scale-90 peer-focus:-top-2 peer-focus:left-2.5 peer-focus:text-xs peer-focus:text-slate-500 peer-focus:scale-90">
                                     Nombre del cliente
@@ -43,8 +42,7 @@
                             <div class="relative">
                                 <x-text-input
                                     class="peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                    placeholder="Nombre del cliente"
-                                    wire:model="clienteForm.ubicacion" />
+                                    placeholder="Nombre del cliente" wire:model="clienteForm.ubicacion" />
                                 <label
                                     class="absolute cursor-text bg-white px-1 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2.5 text-slate-500 peer-placeholder-shown:text-sm transition-all transform origin-left -top-2 left-2.5 text-xs scale-90 peer-focus:-top-2 peer-focus:left-2.5 peer-focus:text-xs peer-focus:text-slate-500 peer-focus:scale-90">
                                     Ubicación
@@ -66,8 +64,7 @@
                             <div class="relative">
                                 <x-text-input
                                     class="peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                    placeholder="Nombre del cliente"
-                                    wire:model="clienteForm.email" />
+                                    placeholder="Nombre del cliente" wire:model="clienteForm.email" />
                                 <label
                                     class="absolute cursor-text bg-white px-1 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2.5 text-slate-500 peer-placeholder-shown:text-sm transition-all transform origin-left -top-2 left-2.5 text-xs scale-90 peer-focus:-top-2 peer-focus:left-2.5 peer-focus:text-xs peer-focus:text-slate-500 peer-focus:scale-90">
                                     Email
@@ -81,22 +78,64 @@
 
                         <div class="w-full min-w-[200px]">
                             <div class="relative">
-                                <x-text-input
-                                    type="tel"
+                                <x-text-input type="tel"
                                     class="peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                                    placeholder="Nombre del cliente"
-                                    wire:model="clienteForm.telefono" />
+                                    placeholder="Nombre del cliente" wire:model="clienteForm.telefono" />
                                 <label
                                     class="absolute cursor-text bg-white px-1 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2.5 text-slate-500 peer-placeholder-shown:text-sm transition-all transform origin-left -top-2 left-2.5 text-xs scale-90 peer-focus:-top-2 peer-focus:left-2.5 peer-focus:text-xs peer-focus:text-slate-500 peer-focus:scale-90">
                                     Telefono
                                 </label>
                             </div>
                         </div>
+
+                        <div class="w-full min-w-[200px]">
+                            <div class="relative">
+                                <x-text-input type="file"
+                                    class="peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                                    placeholder="Miniatura de video" wire:model="clienteForm.miniatura" />
+                                <label
+                                    class="absolute cursor-text bg-white px-1 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2.5 text-slate-500 peer-placeholder-shown:text-sm transition-all transform origin-left -top-2 left-2.5 text-xs scale-90 peer-focus:-top-2 peer-focus:left-2.5 peer-focus:text-xs peer-focus:text-slate-500 peer-focus:scale-90">
+                                    Miniatura
+                                </label>
+                            </div>
+
+                            @error('clienteForm.miniatura')
+                                <x-input-error :messages="$errors->get('clienteForm.miniatura')" class="mt-2 pl-3" />
+                            @enderror
+                        </div>
+
+                        <div class="w-full min-w-[200px]">
+                            <div class="relative">
+                                <x-text-input type="file"
+                                    class="peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                                    placeholder="Archivo de video" wire:model="clienteForm.video" />
+                                <label
+                                    class="absolute cursor-text bg-white px-1 peer-placeholder-shown:left-2.5 peer-placeholder-shown:top-2.5 text-slate-500 peer-placeholder-shown:text-sm transition-all transform origin-left -top-2 left-2.5 text-xs scale-90 peer-focus:-top-2 peer-focus:left-2.5 peer-focus:text-xs peer-focus:text-slate-500 peer-focus:scale-90">
+                                    Archivo de video
+                                </label>
+                            </div>
+
+                            @error('')
+                                <x-input-error :messages="$errors->get('clienteForm.video')" class="mt-2 pl-3" />
+                            @enderror
+                        </div>
                     </fieldset>
-                    @error('form.title')
-                        <p class="pl-3 pt-2 text-sm text-red-600" x-data="{ show: $wire.entangle('errors') != null }" x-init="setTimeout(() => show = false, 5000)"
-                            x-show="show" x-transition:leave.duration.300ms>{{ $message }}</p>
-                    @enderror
+
+                    <div
+                        class="w-1/2 {{ $clienteForm->miniatura ? 'h-[150px]' : 'h-auto' }} mt-4 ml-3 overflow-y-hidden rounded-md relative">
+                        @if ($clienteForm->miniatura)
+                            <img src="{{ $clienteForm->miniatura->temporaryUrl() }}" alt="Upload"
+                                class="h-full w-full object-cover object-center">                            
+                        @endif
+
+                        @if ($clienteForm->video)
+                            <video width="320" height="240" controls>
+                                <source src="{{ $clienteForm->video->temporaryUrl() }}" type="video/mp4">
+                                Tu navegador no soporta la reproducción de video.
+                            </video>
+                        @endif
+                        <div class="h-full w-full absolute top-0 left-0 bg-gradient-to-t from-white to-50%"></div>
+                    </div>
 
                     <div class="w-full max-w-full min-w-[200px] mt-8">
                         <x-primary-button>
